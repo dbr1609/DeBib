@@ -19,8 +19,22 @@ using Microsoft.Extensions.Configuration;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 2 "C:\Users\jn1248\OneDrive - ENGIE\Avondschool\Web Frameworks\DeBib\Views\_ViewImports.cshtml"
+using DeBib.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "C:\Users\jn1248\OneDrive - ENGIE\Avondschool\Web Frameworks\DeBib\Views\_ViewImports.cshtml"
+using DeBib.ViewModels;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"1d05bca256287d6632d16a91073b982fb8d8a680", @"/Views/_ViewStart.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"11d0fe58af1844b8447f01af56838b99416ad9ed", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"fb2466eb9010dffa447ff98158b7d77143b6e31b", @"/Views/_ViewImports.cshtml")]
     public class Views__ViewStart : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998
