@@ -38,6 +38,9 @@ namespace DeBib.Models
         {
             return books.AsQueryable();
         }
-        
+        public void Delete(Book book)
+        {
+            this.books.Remove(book);
+        }
     }
 }
