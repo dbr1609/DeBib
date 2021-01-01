@@ -10,5 +10,6 @@ namespace DeBib.Models
         IQueryable<Book> GetAll();
         Book Get(int id);
         void Delete(Book book);
+        void Create(Book book);
     }
 }

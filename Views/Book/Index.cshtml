@@ -38,7 +38,6 @@
         }
     </tbody>
 </table>
-}
 @foreach (Book book in Model.Books)
 {
     <div class="modal fade" id="delete-modal-@book.Id" tabindex="-1" aria-hidden="true">
@@ -61,3 +60,6 @@
         </div>
     </div>
 }
+<a asp-controller="Book" asp-action="Create" role="button" class="btn btn-labeled btn-primary">Maak een nieuw boek</a>
+<a asp-controller="Book" asp-action="Create" role="button" class="btn btn-labeled btn-primary">Enkel favorieten tonen</a>
+

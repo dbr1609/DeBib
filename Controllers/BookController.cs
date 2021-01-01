@@ -38,5 +38,28 @@ namespace DeBib.Controllers
             }
             return NotFound();
         }
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Create(BookCreateViewModel bookCreateViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                Book book = new Book
+                {
+                    ISBN = bookCreateViewModel.ISBN,
+                    Title = bookCreateViewModel.Title,
+                    Author = bookCreateViewModel.Author,
+                    PublicationYear = bookCreateViewModel.PublicationYear,
+                    Type = bookCreateViewModel.Type
+                };
+                this.bookRepository.Create(book);
+                TempData["Message"] = $"{book.Title} was added succesfully";
+                return RedirectToAction("Index", "Book");
+            }
+            return View();
+        }
     }
 }
