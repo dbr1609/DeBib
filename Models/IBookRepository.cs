@@ -11,5 +11,6 @@ namespace DeBib.Models
         Book Get(int id);
         void Delete(Book book);
         void Create(Book book);
+        void Update(Book book);
     }
 }

@@ -61,5 +61,52 @@ namespace DeBib.Controllers
             }
             return View();
         }
+        public IActionResult Update(int id)
+        {
+            var book = this.bookRepository.Get(id);
+            if (book != null)
+            {
+                BookUpdateViewModel bookUpdateViewModel = new BookUpdateViewModel
+                {
+                    ISBN = book.ISBN,
+                    Title = book.Title,
+                    Author = book.Author,
+                    PublicationYear = book.PublicationYear,
+                    Type = book.Type
+                };
+                return View(bookUpdateViewModel);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+        [HttpPost]
+        public IActionResult Update(int id, BookUpdateViewModel bookUpdateViewModel)
+        {
+            var book = this.bookRepository.Get(id);
+            if (book != null)
+            {
+                if (ModelState.IsValid)
+                {
+                    book.ISBN = bookUpdateViewModel.ISBN;
+                    book.Title = bookUpdateViewModel.Title;
+                    book.Author = bookUpdateViewModel.Author;
+                    book.PublicationYear = bookUpdateViewModel.PublicationYear;
+                    book.Type = bookUpdateViewModel.Type;
+                    this.bookRepository.Update(book);
+                    TempData["Message"] = $"{book.Title} was succesfully updated!";
+                    return RedirectToAction(nameof(Index), "Book");
+                }
+                else
+                {
+                    return View(bookUpdateViewModel);
+                }
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
     }
 }

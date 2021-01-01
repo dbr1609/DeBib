@@ -55,5 +55,14 @@ namespace DeBib.Models
             book.Id = max + 1;
             books.Add(book);
         }
+        public void Update(Book book)
+        {
+            var OldProduct = Get(book.Id);
+            OldProduct.ISBN = book.ISBN;
+            OldProduct.Title = book.Title;
+            OldProduct.Author = book.Author;
+            OldProduct.PublicationYear = book.PublicationYear;
+            OldProduct.Type = book.Type;
+        }
     }
 }
