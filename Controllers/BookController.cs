@@ -10,18 +10,22 @@ namespace DeBib.Controllers
 {
     public class BookController : Controller
     {
+        public static int pageSize = 5;
         private IBookRepository bookRepository;
         public BookController(IBookRepository bookRepository)
         {
             this.bookRepository = bookRepository;
         }
         
-        public IActionResult Index()
+        public IActionResult Index([FromQuery] int page = 1)
         {
             var books = this.bookRepository.GetAll();
             BookListViewModel bookListViewModel = new BookListViewModel
             {
-                Books = books
+                Books = books.Skip((page-1)*pageSize).Take(pageSize),
+                CurrentPage = page,
+                TotalPages = (int)Math.Ceiling((double)books.Count() / pageSize)
+                
             };
         return View(bookListViewModel);
         }
@@ -72,7 +76,7 @@ namespace DeBib.Controllers
                     Title = book.Title,
                     Author = book.Author,
                     PublicationYear = book.PublicationYear,
-                    Type = book.Type
+                    Type = book.Type,
                 };
                 return View(bookUpdateViewModel);
             }

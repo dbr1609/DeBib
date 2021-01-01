@@ -6,6 +6,13 @@
         @TempData["Message"]
     </div>
 }
+<ul class="pagination">
+    @for (int i = 1; i < Model.TotalPages + 1; i++)
+    {
+        <li class="page-item @(i==Model.CurrentPage?"active":"")"><a class="page-link" asp-action="Index" asp-route-page="@i">@i</a></li>
+        ;
+    }
+</ul>
 <table class="table">
     <thead>
         <tr class="text-primary">
