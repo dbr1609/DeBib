@@ -11,5 +11,7 @@ namespace DeBib.ViewModels
         public IEnumerable<Book> Books { get; set; }
         public int CurrentPage { get; set; }
         public int TotalPages { get; set; }
+        public SortDirection SortDirection { get; set; }
+        public Sortfield Sortfield { get; set; }
     }
 }

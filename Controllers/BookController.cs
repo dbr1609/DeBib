@@ -17,14 +17,36 @@ namespace DeBib.Controllers
             this.bookRepository = bookRepository;
         }
         
-        public IActionResult Index([FromQuery] int page = 1)
+        public IActionResult Index([FromQuery] int page = 1, [FromQuery] Sortfield sort = Sortfield.ISBN, [FromQuery] SortDirection sortDirection = SortDirection.ASC)
         {
             var books = this.bookRepository.GetAll();
+            switch (sort)
+            {
+                case Sortfield.ISBN:
+                    books = (sortDirection == SortDirection.ASC) ? books.OrderBy(book => book.ISBN) : books.OrderByDescending(book => book.ISBN);
+                    break;
+                case Sortfield.Title:
+                    books = (sortDirection == SortDirection.ASC) ? books.OrderBy(book => book.Title) : books.OrderByDescending(book => book.Title);
+                    break;
+                case Sortfield.Author:
+                    books = (sortDirection == SortDirection.ASC) ? books.OrderBy(book => book.Author) : books.OrderByDescending(book => book.Author);
+                    break;
+                case Sortfield.PublicationYear:
+                    books = (sortDirection == SortDirection.ASC) ? books.OrderBy(book => book.PublicationYear) : books.OrderByDescending(book => book.PublicationYear);
+                    break;
+                case Sortfield.Type:
+                    books = (sortDirection == SortDirection.ASC) ? books.OrderBy(book => book.Type) : books.OrderByDescending(book => book.Type);
+                    break;
+                default:
+                    break;
+            }
             BookListViewModel bookListViewModel = new BookListViewModel
             {
                 Books = books.Skip((page-1)*pageSize).Take(pageSize),
                 CurrentPage = page,
-                TotalPages = (int)Math.Ceiling((double)books.Count() / pageSize)
+                TotalPages = (int)Math.Ceiling((double)books.Count() / pageSize),
+                Sortfield = sort,
+                SortDirection = sortDirection
                 
             };
         return View(bookListViewModel);
