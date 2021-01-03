@@ -27,6 +27,7 @@ namespace DeBib
         {
             services.AddControllersWithViews();
             services.AddSingleton<IBookRepository, BookInMemoryRepository>();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,6 +41,8 @@ namespace DeBib
             app.UseRouting();
 
             app.UseStaticFiles();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

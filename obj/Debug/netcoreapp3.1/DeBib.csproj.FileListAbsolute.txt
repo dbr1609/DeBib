@@ -58,3 +58,4 @@ C:\Users\jn1248\OneDrive - ENGIE\Avondschool\Web Frameworks\DeBib\bin\Debug\netc
 C:\Users\jn1248\OneDrive - ENGIE\Avondschool\Web Frameworks\DeBib\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
 C:\Users\jn1248\OneDrive - ENGIE\Avondschool\Web Frameworks\DeBib\obj\Debug\netcoreapp3.1\Razor\Views\Book\Create.cshtml.g.cs
 C:\Users\jn1248\OneDrive - ENGIE\Avondschool\Web Frameworks\DeBib\obj\Debug\netcoreapp3.1\Razor\Views\Book\Update.cshtml.g.cs
+C:\Users\jn1248\OneDrive - ENGIE\Avondschool\Web Frameworks\DeBib\obj\Debug\netcoreapp3.1\Razor\Views\Book\Favorites.cshtml.g.cs
