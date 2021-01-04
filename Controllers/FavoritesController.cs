@@ -80,5 +80,4 @@ namespace DeBib.Controllers
             return new Dictionary<int, FavoriteLines>();
         }
     }
-
 }

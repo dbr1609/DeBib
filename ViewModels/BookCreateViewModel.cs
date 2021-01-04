@@ -24,6 +24,5 @@ namespace DeBib.ViewModels
         [Display(Name = "Publicatie jaar")]
         public int PublicationYear { get; set; }
         public BookType Type { get; set; }
-
     }
 }

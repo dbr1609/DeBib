@@ -8,7 +8,6 @@ namespace DeBib.Models
     public class BookInMemoryRepository : IBookRepository
     {
         private List<Book> books;
-
         public BookInMemoryRepository()
         {
             this.books = new List<Book>();
@@ -21,7 +20,6 @@ namespace DeBib.Models
             Create(new Book { ISBN = "ISBN9781509301041", Title = "Microsoft visual c# step by step", Author = "John Sharp", PublicationYear = 2015, Type = BookType.NONFICTION });
             Create(new Book { ISBN = "ISBN9789463932677", Title = "Bekend & Bescheiden", Author = "Xander De Rycke", PublicationYear = 2020, Type = BookType.NONFICTION });
         }
-
         public Book Get(int id)
         {
             foreach (Book book in books)
@@ -33,7 +31,6 @@ namespace DeBib.Models
             }
             return null;
         }
-
         public IQueryable<Book> GetAll()
         {
             return books.AsQueryable();

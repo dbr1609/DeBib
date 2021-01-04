@@ -18,7 +18,6 @@ namespace DeBib.Controllers
         {
             this.bookRepository = bookRepository;
         }
-        
         public IActionResult Index([FromQuery] int page = 1, [FromQuery] Sortfield sort = Sortfield.ISBN, [FromQuery] SortDirection sortDirection = SortDirection.ASC)
         {
             var books = this.bookRepository.GetAll();
@@ -52,7 +51,6 @@ namespace DeBib.Controllers
             };
         return View(bookListViewModel);
         }
-
         [HttpGet]
         public IActionResult Delete(int Id)
         {
