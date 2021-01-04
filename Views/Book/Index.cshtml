@@ -2,7 +2,6 @@
 @{
     ViewBag.Title = "Boeken";
 }
-
 @if (TempData["Message"] != null)
 {
     <div class="alert alert-success" role="alert">
@@ -36,7 +35,7 @@
     <tbody>
         @foreach (Book book in Model.Books)
         {
-            <tr>
+            <tr style="height:200px">
                 <td>@book.ISBN</td>
                 <td>@book.Title</td>
                 <td>@book.Author</td>
@@ -47,9 +46,7 @@
                         <i class="fas fa-trash"></i>
                     </button>
                     <a asp-action="Update" asp-controller="Book" asp-route-id="@book.Id" role="button" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                    <a asp-action="AddToFavorites" asp-controller="Book" asp-route-id="@book.Id" role="button" class="btn btn-secondary"><i class="fas fa-star"></i></a>
-                    <br />
-                    <br />
+                    <a asp-action="Add" asp-controller="Favorites" asp-route-id="@book.Id" role="button" class="btn btn-secondary" ><i class="fas fa-star"></i></a>
                 </td>
             </tr>
         }
@@ -78,5 +75,5 @@
     </div>
 }
 <a asp-controller="Book" asp-action="Create" role="button" class="btn btn-labeled btn-primary">Maak een nieuw boek</a>
-<a asp-controller="Book" asp-action="Create" role="button" class="btn btn-labeled btn-primary">Enkel favorieten tonen</a>
+<a asp-controller="Favorites" asp-action="Index" role="button" class="btn btn-labeled btn-primary">Enkel favorieten tonen</a>
 

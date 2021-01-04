@@ -49,7 +49,6 @@ namespace DeBib.Controllers
                 TotalPages = (int)Math.Ceiling((double)books.Count() / pageSize),
                 Sortfield = sort,
                 SortDirection = sortDirection
-                
             };
         return View(bookListViewModel);
         }
@@ -135,35 +134,6 @@ namespace DeBib.Controllers
             {
                 return NotFound();
             }
-        }
-        private List<int> GetFavoritesFromSession()
-        {
-            string favoritesString = HttpContext.Session.GetString("Favorites");
-            List<int> favorites = new List<int>();
-            if (favoritesString != null)
-            {
-                favorites = JsonConvert.DeserializeObject<List<int>>(favoritesString);
-            }
-            return favorites;
-        }
-        private void SaveFavoritesToSession(List<int> favorites)
-        {
-            HttpContext.Session.SetString("favorites", JsonConvert.SerializeObject(favorites));
-        }
-        [HttpPost]
-        public IActionResult AddToFavorites(int id)
-        {
-            List<int> favorites = GetFavoritesFromSession();
-            favorites.Add(id);
-            SaveFavoritesToSession(favorites);
-            return RedirectToAction(nameof(Favorites));
-        }
-        [HttpGet]
-        public IActionResult Favorites()
-        {
-            List<int> favorites = GetFavoritesFromSession();
-            List<Book> books = favorites.Select(id => bookRepository.Get(id)).ToList();
-            return View();
         }
     }
 }

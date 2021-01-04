@@ -1,0 +1,48 @@
+﻿@model FavoritesViewModel
+@{
+    ViewBag.Title = "Favoriete boeken";
+}
+<ul class="pagination">
+    @for (int i = 1; i < Model.TotalPages + 1; i++)
+    {
+        <li class="page-item @(i==Model.CurrentPage?"active":"")"><a class="page-link" asp-action="Index" asp-route-page="@i" asp-route-sort="@Model.Sortfield" asp-route-sortDirection="@Model.SortDirection">@i</a></li>
+        ;
+    }
+</ul>
+<table class="table">
+    <thead>
+        <tr class="text-primary">
+            <th scope="col"><a asp-action="Index" asp-route-sort="ISBN">ISBN</a> </th>
+            <th scope="col"><a asp-action="Index" asp-route-sort="Title">Titel</a> </th>
+            <th scope="col"><a asp-action="Index" asp-route-sort="Author">Auteur</a> </th>
+            <th scope="col"><a asp-action="Index" asp-route-sort="PublicationYear">Publicatiejaar</a> </th>
+            <th scope="col"><a asp-action="Index" asp-route-sort="Type">Type</a> </th>
+            <th>
+                <form method="get" asp-action="Index">
+                    <input asp-for="Sortfield" name="sort" hidden />
+                    <select asp-for="SortDirection" asp-items="Html.GetEnumSelectList<SortDirection>()" name="sortDirection"></select>
+                    <button type="submit" asp-route-sort="@Model.Sortfield">Change</button>
+                </form>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var favorite in Model.FavoriteBooks)
+        {
+            <tr style="height:200px">
+                <td>@favorite.Book.ISBN</td>
+                <td>@favorite.Book.Title</td>
+                <td>@favorite.Book.Author</td>
+                <td>@favorite.Book.PublicationYear</td>
+                <td><p>@Html.DisplayFor(m => favorite.Book.Type)</p></td>
+                <td>
+                    <span><a asp-controller="Book" asp-action="Delete" asp-route-id="@favorite.Book.Id" role="button" class="btn btn-danger"><i class="fas fa-trash"></i></a> </span>
+                    <a asp-controller="Book" asp-action="Update" asp-route-id="@favorite.Book.Id" role="button" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                    <a asp-controller="Favorites" asp-action="Remove" asp-route-id="@favorite.Book.Id" role="button" class="btn btn-secondary"><i class="fas fa-star" style="color:yellow"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-controller="Book" asp-action="Create" role="button" class="btn btn-primary">Maak een nieuw boek</a>
+<a asp-controller="Book" asp-action="Index" role="button" class="btn btn-primary">Toon alles</a>
